@@ -3,9 +3,17 @@ import { createStore } from "redux";
 const ADD = "add";
 const DELETE = "delete";
 
-const dispatchAdd = text => {
+export const actionAdd = text => {
   return {
-    text: text
+    type: ADD,
+    text
+  };
+};
+
+export const actionDelete = id => {
+  return {
+    type: DELETE,
+    id
   };
 };
 
@@ -20,6 +28,6 @@ const reducer = (store = [], action) => {
   }
 };
 
-const store = createStore();
+const store = createStore(reducer);
 
 export default store;
