@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { connect } from "react-redux";
+import { actionCreator } from "../store";
 
 // Home 을 home으로 쓰니까 Hook이 에러나오네?
-const Home = () => {
+const Home = ({ toDolist, addList }) => {
   const [list, setList] = useState("");
   const onChange = e => {
     const value = e.currentTarget.value;
@@ -9,6 +11,7 @@ const Home = () => {
   };
   const onSubmit = e => {
     e.preventDefault();
+    addList(list);
     setList("");
   };
   return (
@@ -18,9 +21,17 @@ const Home = () => {
         <input placeholder="값을 입력하시오" value={list} onChange={onChange}></input>
         <button> 등록 </button>
       </form>
-      <ul></ul>
+      <ul>{JSON.stringify(toDolist)}</ul>
     </>
   );
 };
 
-export default Home;
+function mapStateToProps(state) {
+  return { toDolist: state };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { addList: text => dispatch(actionCreator.actionAdd(text)) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
