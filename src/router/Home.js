@@ -37,8 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addList: text => dispatch(actionCreator.actionAdd(text)),
-    deleteList: id => dispatch(actionCreator.actionDelete(id))
+    addList: text => dispatch(actionCreator.actionAdd(text))
   };
 }
 
