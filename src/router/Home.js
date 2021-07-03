@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import Todo from "../components/Todo";
 import { actionCreator } from "../store";
 
 // Home 을 home으로 쓰니까 Hook이 에러나오네?
-const Home = ({ toDolist, addList }) => {
+const Home = ({ toDolist, addList, deleteList }) => {
   const [list, setList] = useState("");
   const onChange = e => {
     const value = e.currentTarget.value;
@@ -21,7 +22,11 @@ const Home = ({ toDolist, addList }) => {
         <input placeholder="값을 입력하시오" value={list} onChange={onChange}></input>
         <button> 등록 </button>
       </form>
-      <ul>{JSON.stringify(toDolist)}</ul>
+      <ul>
+        {toDolist.map(todo => (
+          <Todo {...todo} key={todo.id} />
+        ))}
+      </ul>
     </>
   );
 };
@@ -31,7 +36,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { addList: text => dispatch(actionCreator.actionAdd(text)) };
+  return {
+    addList: text => dispatch(actionCreator.actionAdd(text)),
+    deleteList: id => dispatch(actionCreator.actionDelete(id))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
