@@ -4,7 +4,7 @@ import Todo from "../components/Todo";
 import { actionCreator } from "../store";
 
 // Home 을 home으로 쓰니까 Hook이 에러나오네?
-const Home = ({ toDolist, addList, deleteList }) => {
+const Home = ({ toDolist, addList }) => {
   const [list, setList] = useState("");
   const onChange = e => {
     const value = e.currentTarget.value;

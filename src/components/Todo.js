@@ -14,6 +14,8 @@ const Todo = ({ text, deleteList, id }) => {
   );
 };
 
+
+
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     deleteList: () => dispatch(actionCreator.actionDelete(ownProps.id))

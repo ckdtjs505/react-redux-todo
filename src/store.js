@@ -24,15 +24,21 @@ const reducer = (store = [], action) => {
     case DELETE:
       return store.filter(todo => todo.id !== action.id);
     default:
-      return [];
+      return store;
   }
 };
 
-const store = createStore(reducer);
+const localData = JSON.parse(localStorage.getItem("reduxState"));
+
+const store = createStore(reducer, localData);
 
 export const actionCreator = {
   actionAdd,
   actionDelete
 };
+
+store.subscribe(() => {
+  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+});
 
 export default store;
