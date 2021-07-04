@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
 import { actionCreator } from "../store";
+import { Link } from "react-router-dom";
 
-const Todo = ({ text, deleteList }) => {
+const Todo = ({ text, deleteList, id }) => {
   const onClick = () => {
     deleteList();
   };
   return (
     <li>
-      {text}
+      <Link to={`/${id}`}> {text}</Link>
       <button onClick={onClick}>삭제</button>
     </li>
   );
