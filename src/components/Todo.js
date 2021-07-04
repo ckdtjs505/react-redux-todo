@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { actionCreator } from "../store";
 
-const Todo = ({ text, id, deleteList }) => {
+const Todo = ({ text, deleteList }) => {
   const onClick = () => {
-    deleteList(id);
+    deleteList();
   };
   return (
     <li>
@@ -13,9 +13,9 @@ const Todo = ({ text, id, deleteList }) => {
   );
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    deleteList: id => dispatch(actionCreator.actionDelete(id))
+    deleteList: () => dispatch(actionCreator.actionDelete(ownProps.id))
   };
 }
 
