@@ -25,6 +25,7 @@ const HomeTest = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    // add
     setList([...list, text]);
     setText("");
   };
@@ -37,6 +38,7 @@ const HomeTest = () => {
   };
 
   const onClick = text => {
+    // delete
     setList(list.filter(ele => ele !== text));
   };
 
