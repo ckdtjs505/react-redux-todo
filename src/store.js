@@ -31,7 +31,7 @@ const reducer = (store, action) => {
 // 주의! : localstorage reduxState에 data 가 없는 경우 null로 선언되어 배열로 변경
 const localData = JSON.parse(localStorage.getItem("reduxState")) || [];
 
-const store = createStore(reducer, localData);
+const store = createStore(reducer, localData, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export const actionCreator = {
   actionAdd,
