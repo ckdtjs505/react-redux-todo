@@ -17,7 +17,7 @@ const actionDelete = id => {
   };
 };
 
-const reducer = (store = [], action) => {
+const reducer = (store, action) => {
   switch (action.type) {
     case ADD:
       return [{ text: action.text, id: Date.now() }, ...store];
@@ -28,7 +28,8 @@ const reducer = (store = [], action) => {
   }
 };
 
-const localData = JSON.parse(localStorage.getItem("reduxState"));
+// 주의! : localstorage reduxState에 data 가 없는 경우 null로 선언되어 배열로 변경
+const localData = JSON.parse(localStorage.getItem("reduxState")) || [];
 
 const store = createStore(reducer, localData);
 

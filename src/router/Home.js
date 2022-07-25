@@ -23,7 +23,7 @@ const Home = ({ toDolist, addList }) => {
         <button> 등록 </button>
       </form>
       <ul>
-        {toDolist.map(todo => (
+        {toDolist && toDolist.map(todo => (
           <Todo {...todo} key={todo.id} />
         ))}
       </ul>
