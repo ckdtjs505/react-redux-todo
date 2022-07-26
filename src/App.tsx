@@ -3,7 +3,7 @@ import Detail from "./router/Detail";
 import Home from "./router/Home";
 import HomeTest from "./router/HomeTest";
 
-function App() {
+const App = ()  =>{
   return (
     <div className="App">
       <HashRouter>
