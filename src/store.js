@@ -1,42 +1,29 @@
-import { createStore } from "redux";
-
-const ADD = "add";
-const DELETE = "delete";
-
-const actionAdd = text => {
-  return {
-    type: ADD,
-    text
-  };
-};
-
-const actionDelete = id => {
-  return {
-    type: DELETE,
-    id
-  };
-};
-
-const reducer = (store, action) => {
-  switch (action.type) {
-    case ADD:
-      return [{ text: action.text, id: Date.now() }, ...store];
-    case DELETE:
-      return store.filter(todo => todo.id !== action.id);
-    default:
-      return store;
-  }
-};
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 // 주의! : localstorage reduxState에 data 가 없는 경우 null로 선언되어 배열로 변경
 const localData = JSON.parse(localStorage.getItem("reduxState")) || [];
 
-const store = createStore(reducer, localData, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const initialState = { list: localData }
+
+const listSlice = createSlice({
+  name : 'list',
+  initialState,
+  reducers: {
+    add : (state,action) => [{ text: action.payload, id: Date.now() }, ...state],
+    delete : (state,action) => state.filter(todo => todo.id !== action.payload)
+  }
+})
 
 export const actionCreator = {
-  actionAdd,
-  actionDelete
+  actionAdd : listSlice.actions.add,
+  actionDelete : listSlice.actions.delete
 };
+
+const store = configureStore({
+  reducer : listSlice.reducer,
+  devTools: true,
+  preloadedState : localData
+})
 
 store.subscribe(() => {
   localStorage.setItem("reduxState", JSON.stringify(store.getState()));
