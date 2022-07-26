@@ -1,7 +1,10 @@
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Detail = ({ list }) => {
-  console.log(list);
+const Detail = ({match : {params : {id}}}) => {
+  const list = useSelector( state => 
+    state.find(ele => ele.id === parseInt(id))
+  )
+
   return (
     <>
       <h1>{list?.text}</h1>
@@ -10,14 +13,5 @@ const Detail = ({ list }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
-  const {
-    match: {
-      params: { id }
-    }
-  } = ownProps;
-  return { list: state.find(ele => ele.id === parseInt(id)) };
-};
 
-export default connect(mapStateToProps)(Detail);
+export default Detail;

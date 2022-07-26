@@ -1,10 +1,12 @@
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreator } from "../store";
 import { Link } from "react-router-dom";
 
-const Todo = ({ text, deleteList, id }) => {
+const Todo = ({ text, id }) => {
+  const dispatch = useDispatch();
+
   const onClick = () => {
-    deleteList();
+    dispatch(actionCreator.actionDelete(id));
   };
   return (
     <li>
@@ -14,12 +16,4 @@ const Todo = ({ text, deleteList, id }) => {
   );
 };
 
-
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    deleteList: () => dispatch(actionCreator.actionDelete(ownProps.id))
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Todo);
+export default Todo;
