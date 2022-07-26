@@ -2,7 +2,13 @@ import { useDispatch } from "react-redux";
 import { actionCreator } from "../store";
 import { Link } from "react-router-dom";
 
-const Todo = ({ text, id }) => {
+type TodoProps = {
+  key : number;
+  text :string;
+  id : number;
+}
+
+const Todo = ({ text, id } : TodoProps) => {
   const dispatch = useDispatch();
 
   const onClick = () => {

@@ -27,6 +27,13 @@ const store = configureStore({
   preloadedState : localData
 })
 
+
+//redux store state 관련
+//https://react-redux.js.org/using-react-redux/usage-with-typescript#typing-the-usedispatch-hook
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch
+
 store.subscribe(() => {
   localStorage.setItem("reduxState", JSON.stringify(store.getState()));
 });
