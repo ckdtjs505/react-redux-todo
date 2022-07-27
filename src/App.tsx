@@ -1,6 +1,6 @@
 import { HashRouter, Route } from "react-router-dom";
-import Detail from "./router/Detail";
-import Home from "./router/Home";
+import Detail from "./views/Detail/Detail";
+import Home from "./views/Home/Home";
 
 const App = ()  =>{
   return (

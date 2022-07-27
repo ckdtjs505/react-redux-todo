@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
 import {  RouteComponentProps } from "react-router-dom";
-import { RootState } from "../store";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 interface MatchParams {
   id: string;
@@ -9,9 +8,7 @@ interface MatchParams {
 // 아래 링크 참고 하기
 // https://velog.io/@mandariin/Typescript%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C-Route-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0 
 const Detail = ({match : {params : {id}}} : RouteComponentProps<MatchParams>) => {
-  const list = useSelector( (state: RootState) => 
-    state.find(ele => ele.id === parseInt(id))
-  )
+  const list = useAppSelector( (state) => state.find(ele => ele.id === parseInt(id)))
 
   return (
     <>

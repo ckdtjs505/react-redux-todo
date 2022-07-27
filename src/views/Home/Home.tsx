@@ -1,29 +1,12 @@
-import styled from "styled-components";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Todo from "../components/Todo";
-import { actionCreator, RootState } from "../store";
-
-const Header = styled.h1`
-  background: gray;
-  margin: 0;
-`;
-
-const InputForm = styled.form`
-  display: flex;
-  border: solid 1px black;
-`;
-
-const Input = styled.input`
-  width: 100%;
-`;
-
-const Button = styled.button`
-  width: 50px;
-`;
+import { useDispatch } from "react-redux";
+import Todo from "../../components/Todo";
+import { actionCreator } from "../../store";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { Button, Header, Input, InputForm } from "./Home.style";
 
 const Home = () => {
-  const toDolist = useSelector((state : RootState) => state)
+  const toDolist = useAppSelector((state) => state)
   const dispatch = useDispatch();
 
   const [list, setList] = useState("");
