@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import Todo from "../../components/Todo";
 import { actionCreator } from "../../store";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { Button, Header, Input, InputForm } from "./Home.style";
 
 const Home = () => {
   const toDolist = useAppSelector((state) => state)
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [list, setList] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

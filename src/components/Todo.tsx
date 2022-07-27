@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
 import { actionCreator } from "../store";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 type TodoProps = {
   key : number;
@@ -9,7 +9,7 @@ type TodoProps = {
 }
 
 const Todo = ({ text, id } : TodoProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onClick = () => {
     dispatch(actionCreator.actionDelete(id));
