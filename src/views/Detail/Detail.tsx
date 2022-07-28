@@ -12,8 +12,8 @@ const Detail = ({match : {params : {id}}} : RouteComponentProps<MatchParams>) =>
 
   return (
     <>
-      <h1>{list?.text}</h1>
-      <h5>create at : {list?.id}</h5>
+      <div data-testid="list-text">{list?.text}</div>
+      <h5 data-testid="create-at">create at : {list?.id}</h5>
     </>
   );
 };
